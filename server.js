@@ -19,7 +19,7 @@ server.set('view engine', 'ejs');
 
 
 server.use(session({
-  secret:'Satyr09',
+  secret:config.sessionSecret,
   saveUninitialized:false,
   resave:false
 }));
@@ -87,8 +87,8 @@ server.post('/api/submitDbData', (req,res)=>{
 server.get('/view', function(req, res) {
   console.log(req.query.id+"QUERY!!!!!!!!!!!");  
   
-  if(1)
-  res.render('detailedview');
+  if(req.session.username)
+    res.render('detailedview');
   else{
     res.redirect('login');
   }
@@ -691,16 +691,14 @@ server.get('/api/getDbData' , (req,res)=>{
 server.get('/', (req,res)=>{
 
   if(req.session.username){
-  serverRender()
-    .then(function(content){
       
-      { console.log('From index page: '+req.session.username);
+       console.log('From index page: '+req.session.username);
         
         return res.render('index', {
-      content , name:req.session.username
-    });}})
-    .catch(error=>console.error())
+          content:{DevelopedBy: 'Daipayan'}  , name:req.session.username
+    });
   }
+  
   else{
     res.redirect('/login');
   }

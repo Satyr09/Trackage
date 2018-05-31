@@ -69,6 +69,8 @@ class App  extends React.Component{
                   </div>
                   <input id="submitButton" type="submit"></input>
                 </form>
+
+                <p className='text-center' style={{fontSize:'14px',color:'white'}}>Not registered?<a style={{textDecoration:'none'}} href='/register'>Register</a></p>
             </div>
             </div>
 
