@@ -1,7 +1,7 @@
 {
-  "name": "mern_practice",
+  "name": "Trackage",
   "version": "1.0.0",
-  "description": "mern practice project",
+  "description": "mern stack task management system ",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
