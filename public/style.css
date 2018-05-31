@@ -1,0 +1,135 @@
+.centeredClass{
+  text-align: center;
+
+}
+.leftSpace{
+  margin-left: 25px;
+
+}
+.largeleftSpace{
+  margin-left: 100px;
+}
+.spaceBelow{
+  margin-bottom: 100px ;
+}
+.spaceTop{
+  margin-top:10%;
+}
+
+.smallBackground{
+  background-color: yellow;
+}
+
+.spaceRight{
+  margin-right: 25px;
+}
+
+
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+.greyBackground{
+  background-color: #FFFFFF;
+  
+
+}
+.hoverGold:hover{
+  color: #E2E20C;
+}
+
+.floatRight{
+  float: right;
+  margin-right: 15px;
+}
+.whiteBg{
+  background-color:white;
+}
+.someFloat{
+  float:right;
+}
+body{
+  background-color: #EEE3E3;
+  
+}
+.rightFloat{
+  float:right;
+  cursor: pointer;
+}
+
+.verticalScroll{
+  overflow-y: scroll;
+  max-height: 100vh;
+}
+
+*{
+
+  color: #222421;
+  font-style: italic;
+  
+}
+
+.logoutLink:hover{
+  background-color: #B5A7E0;
+  color: black;
+  }
+  .logoutLink{
+    height: 100%;
+  }
+.borderRight{
+  border-right: 1px solid #ded3d3;
+}
+.noLeftPadding{
+  padding-left: 0;
+}
+.smallLeftPadding{
+  padding-left: 3%;
+}
+.editTask:hover{
+  color:#E70707;
+}
+.editTask{
+  cursor: pointer;
+}
+.smallText{
+  font-size: 14px;
+  color: grey;
+}
+.borderShadowBottom{
+  -webkit-box-shadow:0px 1px 1px #9c969c;
+  -moz-box-shadow:0px 1px 1px #9c969c;
+  box-shadow:0px 1px 1px #9c969c;
+}
+.addButton {
+  border: none;
+  outline: none;
+  float:right;
+  right:5%;
+}
+
+.circle {
+  position: relative;
+  padding: 0;
+  z-index: 98;
+  margin: 0 auto;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background-color: #3F51B5;
+  display: flex;
+  transition: 0.2s;
+  text-align: center;
+}
+.circle img {
+  margin: auto;
+  width: 30px;
+  height: 30px;
+}
+.circle:hover {
+  cursor: pointer;
+  background-color: #606fc7;
+  box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
+}

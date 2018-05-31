@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello EJS</title> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css
+    ">
+    
+        <link rel="stylesheet" type="text/html" href="../public/login-style.css">
+        <script src="//cdn.jsdelivr.net/bluebird/3.5.0/bluebird.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body >  
+      
+    <div id="root"></div>
+
+    
+
+    <script type="text/javascript" src="/test.bundle.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('.signin form .input-group input').focusout(function(){
+            var text_val = $(this).val();
+    
+            if(text_val === "") {
+              $(this).removeClass('has-value');
+            } 
+            else {
+             $(this).addClass('has-value');
+    }
+  });
+  
+});
+    </script>
+    </script>
+    </body>
+    </html>
+    
