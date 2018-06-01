@@ -30,7 +30,8 @@ Currently in development.
 * Adding the 'edit' feature for tasks
 * Adding stats to the profile section
 * Adding a gradation system
-* Impleting organizational and admin access
+* Implementing organizational and admin access
+* Improving the UI
 
 
 
