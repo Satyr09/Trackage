@@ -125,6 +125,32 @@ class Profile extends React.Component{
     }
 
 
+    changeTabHandler(event){
+        let tabId = event.target.getAttribute('data-tab');
+
+        document.getElementById(tabId).classList.add('active');
+        
+        let activeString= 'tab-'+tabId;
+
+        document.getElementById(activeString).classList.add('active');
+
+        for(let i=1;i<=3;i++){
+            if(i!=tabId){
+                let inactiveSibling= document.getElementById(i);
+                console.log(inactiveSibling);   
+
+                inactiveSibling.classList.remove('active');
+                let tempString= 'tab-'+i;
+
+                console.log(tempString+"-------");
+
+
+                document.getElementById(tempString).classList.remove('active');
+            }
+        }
+    }
+
+
     render(){
 
         return(
@@ -132,11 +158,11 @@ class Profile extends React.Component{
             <Header user={this.state.user}/>
             <div className="container spaceTopSmall">
                 <div id="user-profile-2" className="user-profile">
-                <div className="tabbable">
+                <div className="">
                     
         
-                    <div className="tab-content no-border padding-24">
-                        <div id="home" className="tab-pane in active">
+                    <div className="no-border padding-24">
+                        <div id="home" className="">
                             <div className="row">
                                 <div className="col-xs-12 col-sm-4 center">
                                     <span className="">
@@ -228,50 +254,7 @@ class Profile extends React.Component{
                                 </div>
                             </div>
         
-                            <div className="row spaceTop">
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="widget-box transparent">
-                                        <div className="widget-header widget-header-small">
-                                            <h4 className="widget-title smaller">
-                                                <i className="ace-icon fa fa-check-square-o bigger-110"></i>
-                                                Tasks you have been assigned:
-                                            </h4>
-                                        </div>
-        
-                                        <div className="widget-body">
-                                            <div className="widget-main">
-                                                <ul>
-                                                    {this.state.taskList.map(item=>{
-                                                        return <li>Name : {item.name} {item.priority?<span style={{backgroundColor:'yellow'}} className="badge smallBackground"><strong>High priority</strong></span>:<span></span>}</li>
-                                                    })}
-                                                    </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-12 col-sm-6">
-                                    <div className="widget-box transparent">
-                                        <div className="widget-header widget-header-small">
-                                            <h4 className="widget-title smaller">
-                                                <i className="ace-icon fa fa-check-square-o bigger-110"></i>
-                                                Tasks you have completed:
-                                            </h4>
-                                        </div>
-        
-                                        <div className="widget-body">
-                                            <div className="widget-main">
-                                            <ul>
-                                            {this.state.completeList.map(item=>{
-                                                return <li>Name : {item.name} {item.priority?<span style={{backgroundColor:'yellow'}}
-                                                 className="badge smallBackground"><strong>High priority</strong></span>:<span></span>}
-                                                  <p style={{fontSize:'14px',color:'grey'}}>Completed on : {item.completedOn}</p></li>
-                                            })}
-                                            </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
         
                         
@@ -281,6 +264,43 @@ class Profile extends React.Component{
 
             </div>
             </div>
+
+
+                 <div class="tasksWrapper">
+		
+	                <div class="tab-wrapper">
+	                	<ul class="tabs">
+			            	<li id="1" class="tab-link active" data-tab="1" onClick={e=>this.changeTabHandler(e)}>Active tasks</li>
+			             	<li id="2" class="tab-link" data-tab="2" onClick={e=>this.changeTabHandler(e)}>Completed Tasks</li>
+			            	<li id="3" class="tab-link" data-tab="3" onClick={e=>this.changeTabHandler(e)}>Archived Tasks</li>
+	                	</ul>
+	                 </div>
+
+	                <div class="content-wrapper">
+
+		                <div id="tab-1" class="tab-content active">
+                            <ul className="list-group">
+                              {this.state.taskList.map(item=>{
+                                return <li className="list-group-item">Name : {item.name} {item.priority?<span style={{backgroundColor:'yellow'}} className="badge smallBackground"><strong>High priority</strong></span>:<span></span>}</li>
+                               })}
+                             </ul>                           
+                        </div>
+
+	                	<div id="tab-2" class="tab-content">
+                            <ul className="list-group">
+                                {this.state.completeList.map(item=>{
+                                 return <li className="list-group-item">Name : {item.name} {item.priority?<span style={{backgroundColor:'yellow'}}
+                                     className="badge smallBackground"><strong>High priority</strong></span>:<span></span>}
+                                 <p style={{fontSize:'14px',color:'grey'}}>Completed on : {item.completedOn}</p></li>
+                                 })}
+                            </ul>                            
+                        </div>	                
+                            
+                    	<div id="tab-3"class="tab-content"></div>
+
+	                 </div>
+	
+                 </div>
             </div>
 
 

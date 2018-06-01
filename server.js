@@ -791,6 +791,14 @@ server.get('/login', (req,res)=>{
 
 });
 
+server.get('/employeedir', (req,res)=>{
+  if(req.session.username){
+    res.render('employeeDirectory')
+  }
+  else{
+    res.redirect('/login');
+  }
+})
 server.get('/getdata', (req,res)=>{
   return res.send({add:'somejjblknknthing'});
 });

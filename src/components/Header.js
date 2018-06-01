@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-
+import styles from '../../public/headerStyle.css';
 
 export default class Header  extends React.Component{
 
@@ -33,7 +33,7 @@ render(){
         <a className="nav-link" href="/">Project Dashboard</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">Employee Directory</a>
+        <a className="nav-link" href="/employeedir">Employee Directory</a>
       </li>
     </ul>
     <span className="navbar-text logoutLink">

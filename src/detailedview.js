@@ -12,7 +12,7 @@ class DetailedView extends React.Component{
 
     constructor(props){
         super(props);
-        this.state={queryParams:'',id:'',data:{subtasks:[],comments:[]},user:'',sessionId:''};
+        this.state={queryParams:'',id:'',data:{subtasks:[],comments:[]},user:'',sessionId:'', filterType:''};
     }
 
 
@@ -88,7 +88,10 @@ class DetailedView extends React.Component{
 
 
 
-
+    handleFilter(event){
+        this.setState({filterType:event.target.value}, ()=>console.log(this.state.filterType));
+        event.preventDefault();
+    }
 
 
     getFakeComments(){
@@ -108,6 +111,102 @@ class DetailedView extends React.Component{
 
     }
 
+    switchFunc=(data,filter)=>{
+        console.log('Here yo bous wassup')
+       
+        switch(filter){
+
+
+            case '':
+            return (this.state.data.subtasks.map(item=>{
+                return (
+                  <li className="list-group-item">
+                        {item.completed===0?<button style={{float:'right'}}className="btn" onClick={e=>this.completionHandler(e,item.id)}>Mark as completed</button>
+                        :<img  src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style={{float:'right',height:'1.5em'}}/>} 
+                  <p><strong>Task Name:</strong>{item.name}</p>
+                  <p><strong>Assigned to :</strong>{item.assignedto}</p>
+                  <p><strong>Assigned by:</strong>{item.assignedby}</p>
+                  <p><strong>Priority:</strong>{item.priority===1?<span>High Priority</span>:<span>Low Priority</span>}</p></li>
+                )
+            }))
+
+
+            case 'hasAssignedUser':
+            return (this.state.data.subtasks.map(item=>{
+                                            return (item.assignedto?
+                                              <li className="list-group-item">
+                                                    {item.completed===0?<button style={{float:'right'}}className="btn" onClick={e=>this.completionHandler(e,item.id)}>Mark as completed</button>
+                                                    :<img  src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style={{float:'right',height:'1.5em'}}/>} 
+                                              <p><strong>Task Name:</strong>{item.name}</p>
+                                              <p><strong>Assigned to :</strong>{item.assignedto}</p>
+                                              <p><strong>Assigned by:</strong>{item.assignedby}</p>
+                                              <p><strong>Priority:</strong>{item.priority===1?<span>High Priority</span>:<span>Low Priority</span>}</p></li>
+                                            :<span></span>)
+                                        }))
+
+
+
+            case 'isCompleted':
+            return (this.state.data.subtasks.map(item=>{
+                
+                                              return (item.completed===1?
+                                               <li className="list-group-item">
+                                                    {item.completed===0?<button style={{float:'right'}}className="btn" onClick={e=>this.completionHandler(e,item.id)}>Mark as completed</button>
+                                                    :<img  src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style={{float:'right',height:'1.5em'}}/>} 
+                                              <p><strong>Task Name:</strong>{item.name}</p>
+                                              <p><strong>Assigned to :</strong>{item.assignedto}</p>
+                                              <p><strong>Assigned by:</strong>{item.assignedby}</p>
+                                              <p><strong>Priority:</strong>{item.priority===1?<span>High Priority</span>:<span>Low Priority</span>}</p></li>
+                                            :<span></span> )
+                                        }))
+
+
+
+
+
+
+            case 'isActive':
+            console.log('isACTIVE!!');
+            return ( this.state.data.subtasks.map(item=>{
+                
+                                            return (item.completed===0?
+                                            <li className="list-group-item">
+                                                    {item.completed===0?<button style={{float:'right'}}className="btn" onClick={e=>this.completionHandler(e,item.id)}>Mark as completed</button>
+                                                    :<img  src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style={{float:'right',height:'1.5em'}}/>} 
+                                              <p><strong>Task Name:</strong>{item.name}</p>
+                                              <p><strong>Assigned to :</strong>{item.assignedto}</p>
+                                              <p><strong>Assigned by:</strong>{item.assignedby}</p>
+                                              <p><strong>Priority:</strong>{item.priority===1?<span>High Priority</span>:<span>Low Priority</span>}</p></li>
+                                            :<span></span> )
+                                        }))
+
+
+
+
+
+
+            case 'priority':
+            return (this.state.data.subtasks.map(item=>{
+
+                                              return (item.priority===1?
+                                               <li className="list-group-item">
+                                                    {item.completed===0?<button style={{float:'right'}}className="btn" onClick={e=>this.completionHandler(e,item.id)}>Mark as completed</button>
+                                                    :<img  src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style={{float:'right',height:'1.5em'}}/>} 
+                                              <p><strong>Task Name:</strong>{item.name}</p>
+                                              <p><strong>Assigned to :</strong>{item.assignedto}</p>
+                                              <p><strong>Assigned by:</strong>{item.assignedby}</p>
+                                              <p><strong>Priority:</strong>{item.priority===1?<span>High Priority</span>:<span>Low Priority</span>}</p></li>
+                                              :<span></span> )
+                                        }))
+
+
+
+
+
+
+        }
+    
+    }
 
 render(){
     return(
@@ -126,7 +225,7 @@ render(){
                     <div className="editOptions">
                         <span style={{float:'right',border:'1px solid #bfb9b9',padding:'6px',borderRadius:'3px'}}><i  className="far fa-edit editTask"></i> Edit</span>
                     </div>
-                        <h4>{this.state.data.name}</h4>
+                        <h2>{this.state.data.name}</h2>
                         <p className="smallText"><img src="http://amplifiii.com/flatso/wp-content/uploads/2013/09/flat-faces-icons-circle-man-4_256x256x32.png"
                              style={{height:'18px',width:'auto'}}></img> {this.state.data.createdBy} | {this.state.data.time}</p>
 
@@ -166,7 +265,7 @@ render(){
                     </div>
                     
                 <div className="col-xs-12 col-md-6 noLeftPadding">
-                 <div style={{backgroundColor:'rgb(76, 169, 83)',height:'15%',width:'100%',color:'white'}}>
+                 <div style={{backgroundColor:'rgb(76, 169, 83)',height:'10%',width:'100%',color:'white'}}>
                      <h4 className="text-center" style={{paddingTop:'14%'}}>{this.state.data.name}</h4>
                  </div>
 
@@ -182,23 +281,42 @@ render(){
                       <div className="col-md-2 col-xs-10 offset-xs-1offset-md-0 spaceTop">
                       <h4> 24:36 </h4>
                       <p style={{color:'grey' ,fontSize:'14px'}}>Time left</p></div>
+                   
 
                 </div>
 
                 
                     <div>
                      <h4 className="text-center">Subtasks</h4>
-                     <ul className="list-group">
-                         {this.state.data.subtasks?this.state.data.subtasks.map(item=>{
 
-                              return <li className="list-group-item">
-                                    {item.completed===0?<button style={{float:'right'}}className="btn" onClick={e=>this.completionHandler(e,item.id)}>Mark as completed</button>
-                                    :<img  src="http://www.pngmart.com/files/3/Green-Tick-PNG-Pic.png" style={{float:'right',height:'1.5em'}}/>} 
-                              <p><strong>Task Name:</strong>{item.name}</p>
-                              <p><strong>Assigned to :</strong>{item.assignedto}</p>
-                              <p><strong>Assigned by:</strong>{item.assignedby}</p>
-                              <p><strong>Priority:</strong>{item.priority===1?<span>High Priority</span>:<span>Low Priority</span>}</p></li>
-                         }):<li>Nothing here yet</li>}
+                     <div className="row">
+                         <div className="col-md-4 spaceTop">
+                            <button className="circle addButton">
+                                 <img src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png" alt="" />
+                            </button>
+                         </div>
+                     <div className="col-md-4 offset-md-4 spaceTop">  
+                      <span> <i style={{color:'grey',fontSize:'14px'}} className="fas fa-filter"></i> Filter By : <select   className="styledSelect" value={this.state.filterType || ' ' } onChange={e=>this.handleFilter(e)}>
+                          <option value=''></option>
+                          <option value='priority'>Priority</option>
+                          <option value='hasAssignedUser'>Has assignee</option>
+                          <option value='isCompleted'>Completed</option>
+                          <option value='isActive'>Active</option>
+                      </select>
+                      </span>
+                      </div>
+                      </div>
+
+                      <br></br>
+                      <br></br>
+
+                     <ul className="list-group">
+                         {this.state.data.subtasks?
+                            <div>{this.switchFunc(this.state.data.subtasks,this.state.filterType)}</div>
+                            :
+
+                            <li>Nothing here yet</li>}
+
                      </ul>
 
                     </div>

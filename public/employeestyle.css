@@ -1,0 +1,3 @@
+.react-bs-table .react-bs-container-header>table>thead>tr>th .filter{
+    display:none !important;
+}
