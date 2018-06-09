@@ -4,7 +4,7 @@ A MERN stack Web Application to track and manage organisational projects and emp
 Currently in development.
 
 [![dependencies Status](https://david-dm.org/Satyr09/Trackage/status.svg)](https://david-dm.org/Satyr09/Trackage)
-
+[![devDependencies Status](https://david-dm.org/Satyr09/Trackage/dev-status.svg)](https://david-dm.org/Satyr09/Trackage?type=dev)
 
 ## How to run locally ?
 
